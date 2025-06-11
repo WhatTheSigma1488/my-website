@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Empires of the Past</title>
+  <link rel="stylesheet" href="styles.css"/>
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+  <!-- AOS CSS -->
+<link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+</head>
+<body>
+  <section class="hero">
+    <div class="overlay">
+      <div class="content">
+        <h1   data-aos="fade-top" data-aos-delay="200">Empires of the Past</h1>
+        <p   data-aos="fade-top" data-aos-delay="200">Exploring the legacy of Maya, Inca, and Aztec civilizations.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Maya Section -->
+  <section id="maya-section">
+    <div class="maya-content">
+      <div class="maya-text">
+        <h2 data-aos="fade-right" data-aos-delay="200">Maya Empire <span>(2000 BCE – 1500 CE)</span></h2>
+        <p data-aos="fade-up" data-aos-delay="200">
+          The Maya civilization flourished in Mesoamerica for centuries, reaching its peak between 250 and 900 CE. Known for their expertise 
+          in astronomy, mathematics, and hieroglyphic writing, the Maya built grand cities filled with pyramids, temples, and observatories.
+          <br><br>
+          Their culture was deeply spiritual, revolving around gods of nature and time. Rituals, including offerings and ceremonies, played 
+          a central role in society. Today, Maya descendants still carry forward their rich heritage across parts of Mexico and Central America.
+        </p>
+        
+        <a href="maya.html" class="explore-link">
+          <span class="explore-maya-btn">Explore Maya</span>
+        </a>
+        
+      </div>
+      <div class="maya-model"  data-aos="fade-left" data-aos-delay="200">
+        <model-viewer
+          src="https://file.garden/aCVKLOhiUQoQJpEw/A_realistic_3D_model__0517153114_texture.glb"
+          alt="Maya Temple Model"
+          auto-rotate
+          camera-controls
+          background-color="#000000"
+          style="width: 90%; height: 90%;"
+        ></model-viewer>
+      </div>
+    </div>
+  </section>
+
+<section id="aztec-section">
+  <div class="aztec-content">
+
+    <div class="aztec-text">
+      <h2 data-aos="fade-right" data-aos-delay="200">
+        Aztec Empire <span>(1345–1521 CE)</span>
+      </h2>
+      <p data-aos="fade-up" data-aos-delay="200">
+        The Aztec civilization thrived in central Mexico and built a powerful empire known for its military prowess, religious rituals, and advanced engineering. 
+        Their capital, Tenochtitlán, was one of the largest cities of its time.
+        <br><br>
+        The Aztecs left behind impressive temples, codices, and artifacts that reveal a complex and vibrant culture rooted in both warfare and spirituality.
+      </p>
+      <a href="aztec.html" class="exploreAztec-btn" data-aos="fade-left" data-aos-delay="200">Explore</a>
+    </div> <!-- ← Оце закриття було не там -->
+
+    <div class="aztec-model" data-aos="fade-left" data-aos-delay="200">
+      <model-viewer
+        src="https://file.garden/aCVKLOhiUQoQJpEw/A_highly_detailed_and_0518025752_texture.glb"
+        alt="Aztec Warrior Model"
+        auto-rotate
+        camera-controls
+        background-color="#000000"
+        style="width: 100%; height: 100%;">
+      </model-viewer>
+    </div>
+
+  </div>
+</section>
+
+
+  <section id="inca-section">
+    <div class="inca-content">
+      <div class="inca-text">
+        <h2 data-aos="fade-right" data-aos-delay="200">Inca Empire <span>(1438–1533 CE)</span></h2>
+        <p data-aos="fade-up" data-aos-delay="200">
+          The Inca Empire, the largest empire in pre-Columbian America, was known for its sophisticated road systems, agricultural terraces, and impressive stone architecture. 
+          The Incas worshipped the sun god Inti and built magnificent temples in his honor.
+          <br><br>
+          Their legacy includes the famous Machu Picchu and a rich cultural heritage that continues to influence Andean societies today.
+        </p>
+
+      <a href="inca.html" class="exploreInca-btn" data-aos="fade-left" data-aos-delay="200">Explore Inca</a>
+    </div> <!-- ← Оце закриття було не там -->
+      <div class="inca-model"  data-aos="fade-left" data-aos-delay="200">
+        <model-viewer
+          src="https://file.garden/aCVKLOhiUQoQJpEw/A_realistic_high_det_0518031223_texture.glb"
+          alt="Inca Warrior Model"
+          auto-rotate
+          camera-controls
+          background-color="#000000"
+          style="width: 90%; height: 90%;"
+        ></model-viewer>
+      </div>
+    </div>
+  </section>
+
+  <section id="summary-section">
+    <div class="summary-content">
+      <h2 data-aos="fade-right" data-aos-delay="200">Why Ancient Empires Still Matter</h2>
+      <p data-aos="fade-up" data-aos-delay="200">
+        The Maya, Aztec, and Inca civilizations left behind more than ruins — they left legacies of innovation, philosophy, and cultural richness. 
+        Understanding their stories helps us see the world through new eyes — learning from their resilience, their mistakes, and their incredible creativity.
+        <br><br>
+        By exploring these empires, we don't just look into the past — we understand the roots of humanity and how history continues to shape our future.
+      </p>
+    </div>
+  </section>
+
+  <footer id="site-footer">
+    <div class="footer-content">
+      <p>© 2025 <strong>Empires of the Past</strong>. Created by <span class="footer-author">Sofiia (Sonik)</span></p>
+      <p>Thanks for exploring the ancient world with us!</p>
+      <p>Contact: <a href="mailto:explore.past.with.us@gmail.com">explore.past.with.us@gmail.com</a></p>
+      <div class="footer-links">
+        <a href="#maya-section">Maya</a> | 
+        <a href="#aztec-section">Aztec</a> | 
+        <a href="#inca-section">Inca</a> | 
+        <a href="#summary-section">Summary</a>
+      </div>
+    </div>
+  </footer>
+  
+
+  <script src="script.js"></script>
+  <!-- AOS JS -->
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script>
+  AOS.init();
+</script>
+
+<script>
+  const link = document.querySelector('.explore-link');
+
+  if (link) {
+    link.addEventListener('click', function (e) {
+      e.preventDefault();
+      this.classList.add('clicked');
+      setTimeout(() => {
+        window.location.href = this.getAttribute('href');
+      }, 600); // Затримка для затемнення
+    });
+  }
+</script>
+
+</body>
+</html>
