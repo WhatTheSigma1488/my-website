@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inca Civilization</title>
+  <link rel="stylesheet" href="inca.css" />
+  <script src="inca.js"></script>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Open+Sans&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/three@0.153.0/build/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.153.0/examples/js/loaders/GLTFLoader.js"></script>
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+
+
+</head>
+<body>
+    <header class="top-nav">
+        <nav>
+          <ul>
+            <li><a href="#geography">Geography</a></li>
+            <li><a href="#religion">Religion</a></li>
+            <li><a href="#artifact">Artifacts</a></li>
+            <li><a href="#social-structure">Social Structure & Politics</a></li>
+            <li><a href="#economy">Economy</a></li>
+            <li><a href="#taxes-labor">Taxes Labor</a></li>
+          </ul>
+        </nav>
+      </header>
+
+        <section class="aztec-hero">
+    <div class="overlay"></div>
+    <div class="aztec-content">
+      <h1 data-aos="fade-top" data-aos-delay="200">Inca Civilization</h1>
+      <p data-aos="fade-top" data-aos-delay="200">The Inca civilization, the largest empire in pre-Columbian America, thrived in the Andes Mountains. <br> Known for their sophisticated engineering, terrace farming, and a vast road network, the Inca left behind an enduring legacy.
+</p>
+      <div class="scroll-down">↓</div>
+    </div>
+  </section>
+
+<section id="geography" class="aztec-section">
+  <div class="aztec-text" id="aztecInfoPanel">
+    <h2 data-aos="fade-top" data-aos-delay="200">Inca Empire</h2>
+    <p data-aos="fade-top" data-aos-delay="200">
+      Click on any golden point on the map to uncover the wonders of the Inca world: its cities, culture, and sacred places.
+    </p>
+  </div>
+  
+  <div class="aztec-map-wrapper">
+    <img src="https://i.postimg.cc/mZ32gBqB/New-Got-Map-Inca.png" alt="Inca Map" class="aztec-map" />
+    
+    <!-- Points -->
+<div class="inca-map-point" style="top: 39%; left: 50%;" title="Cusco" onclick="aztecShowInfo('Cusco')"></div>
+<div class="inca-map-point" style="top: 37%; left: 47%;" title="MachuPicchu" onclick="aztecShowInfo('MachuPicchu')"></div>
+<div class="inca-map-point" style="top: 41%; left: 53.6%;" title="Ollantaytambo" onclick="aztecShowInfo('Ollantaytambo')"></div>
+<div class="inca-map-point" style="top: 25%; left: 29%;" title="Choquequirao" onclick="aztecShowInfo('Choquequirao')"></div>
+<div class="inca-map-point" style="top: 45%; left: 46%;" title="Vilcashuamán" onclick="aztecShowInfo('Vilcashuamán')"></div>
+
+  </div>
+
+  <style>
+.aztec-map-wrapper {
+  position: relative;
+  width: 800px;
+}
+.aztec-map {
+  width: 100%;
+  display: block;
+}
+
+.inca-map-point {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  background-color: gold;
+  border-radius: 50%;
+  border: 2px solid white;
+  z-index: 10;
+}
+</style>
+</section>
+
+
+
+
+
+
+<section id="religion" class="religion-section">
+  <div class="god-model">
+    <model-viewer id="godModel" src="" alt="Aztec God 3D Model" auto-rotate camera-controls></model-viewer>
+  </div>
+  <div class="god-info">
+    <h2 id="godName"></h2>
+    <p id="godText"></p>
+  </div>
+  <button class="nav-arrow left" onclick="prevGod()">&#8592;</button>
+  <button class="nav-arrow right" onclick="nextGod()">&#8594;</button>
+</section>
+
+<style>
+  .religion-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #0c0c0c;
+    color: white;
+    position: relative;
+    height: 100vh;
+    padding: 2rem;
+    overflow: hidden;
+  }
+
+  .god-model {
+    flex: 1;
+    max-width: 50%;
+    padding: 1rem;
+  }
+
+  model-viewer {
+    width: 100%;
+    height: 80vh;
+  }
+
+  .god-info {
+    flex: 1;
+    padding: 1rem;
+    max-width: 50%;
+  }
+
+  .god-info h2 {
+    color: gold;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .god-info p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+  }
+
+  .nav-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 3rem;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    z-index: 10;
+    transition: color 0.3s;
+  }
+
+  .nav-arrow:hover {
+    color: gold;
+  }
+
+  .nav-arrow.left {
+    left: 1rem;
+  }
+
+  .nav-arrow.right {
+    right: 1rem;
+  }
+</style>
+
+<script>
+  const gods = [
+    {
+      name: "Inti (Sun God)",
+      text: "Inti was the most revered deity in Inca mythology, seen as the divine ancestor of the ruling Sapa Inca. He was believed to provide warmth, life, and agricultural prosperity. Grand temples, such as the Coricancha in Cusco, were dedicated to Inti and lavishly adorned with gold.",
+      model: "https://file.garden/aCVKLOhiUQoQJpEw/A_majestic_Incan_sun__0521015613_texture.glb"
+    },
+    {
+      name: "Pachamama (Earth Mother)",
+      text: "Pachamama symbolized fertility, agriculture, and the nurturing aspects of nature. Farmers honored her through rituals and offerings, especially before planting and harvest seasons. She was deeply rooted in daily life and remains a sacred figure in modern Andean culture.",
+      model: "https://file.garden/aCVKLOhiUQoQJpEw/A_serene_female_deity_0521015636_texture.glb"
+    },
+    {
+      name: "Viracocha (Creator God)",
+      text: "Viracocha was the god of creation, believed to have formed the world, sun, moon, and civilization itself. Though worshipped across the empire, he was more philosophical in nature—an omnipotent, distant force rather than an active deity.",
+      model: "https://file.garden/aCVKLOhiUQoQJpEw/An_old_wise_man_in_si_0521015714_texture.glb"
+    },
+    {
+      name: "Illapa (God of Thunder)",
+      text: "Illapa controlled rain, thunder, lightning, and storms—elements vital for agriculture. Depicted with a sling and club, he was said to dwell in the Milky Way and would water the Earth from celestial canals. Farmers offered sacrifices to appease him during dry spells.",
+      model: "https://file.garden/aCVKLOhiUQoQJpEw/A_fierce_warrior_god__0521015740_texture.glb"
+    },
+    {
+      name: "Mama Quilla (Moon Goddess)",
+      text: "Mama Quilla was the sister-wife of Inti and guardian of women, marriage, and the lunar calendar. Her phases were used to measure time, and lunar eclipses were believed to be attacks against her, prompting protective rituals across the empire.",
+      model: "https://file.garden/aCVKLOhiUQoQJpEw/A_graceful_moon_godde_0521015815_texture.glb"
+    }
+  ];
+
+  let current = 0;
+
+  function updateGod() {
+    document.getElementById("godName").textContent = gods[current].name;
+    document.getElementById("godText").textContent = gods[current].text;
+    document.getElementById("godModel").src = gods[current].model;
+  }
+
+  function nextGod() {
+    current = (current + 1) % gods.length;
+    updateGod();
+  }
+
+  function prevGod() {
+    current = (current - 1 + gods.length) % gods.length;
+    updateGod();
+  }
+
+  window.addEventListener("DOMContentLoaded", updateGod);
+</script>
+
+<!-- Don't forget to include model-viewer script -->
+<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+
+  <section id="artifact" class="artifact-section">
+    <div class="artifact-content">
+      <div class="artifact-text">
+        <h2 data-aos="fade-right" data-aos-delay="200">Inca Gold Sun Mask</h2>
+        <p data-aos="fade-right" data-aos-delay="200"><strong class="gold">Period:</strong> 15th century</p>
+        <p data-aos="fade-right" data-aos-delay="200"><strong class="gold">Found:</strong> Near Cusco, Peru</p>
+        <p data-aos="fade-right" data-aos-delay="200">
+A ceremonial gold mask depicting the radiant face of Inti, the Sun God. Crafted with intricate repoussé work, it likely adorned temple walls during sacred festivals and offerings.
+</p>
+      </div>
+ 
+      <div class="artifact-model">
+        <model-viewer
+          src="https://file.garden/aCVKLOhiUQoQJpEw/A_ceremonial_golden_s_0521020500_texture.glb"
+          alt="Inca Gold Sun Mask"
+          auto-rotate
+          camera-controls
+          style="width: 100%; height: 600px;">
+        </model-viewer>
+      </div>
+     
+    </div>
+  </section>
+
+  
+  <section class="artifact-section">
+    <div class="artifact-content">
+      <div class="artifact-model">
+        <model-viewer
+          src="https://file.garden/aCVKLOhiUQoQJpEw/A_quipu_the_ancient__0521021150_texture.glb"
+          alt="Quipu (Knot Record Device)"
+          auto-rotate
+          camera-controls
+          style="width: 100%; height: 600px;">
+        </model-viewer>
+      </div>
+ 
+      <div class="artifact-text">
+        <h2>Quipu (Knot Record Device)</h2>
+        <p><strong class="gold">Period:</strong>  14th–16th centuries</p>
+        <p><strong class="gold">Found:</strong> Likely Tenochtitlan, now part of the British Museum collection</p>
+        <p>
+A system of knotted strings used for recording data like census, taxes, and calendar events. Each knot and color had specific meanings, representing an advanced, non-written communication method.
+</p>
+      </div>
+    </div>
+  </section>
+ 
+  <section class="artifact-section">
+    <div class="artifact-content">
+      <div class="artifact-text">
+        <h2 data-aos="fade-right" data-aos-delay="200"> Sapa Inca’s Feather Headdress</h2>
+        <p data-aos="fade-right" data-aos-delay="200"><strong class="gold">Period:</strong> c. 1500</p>
+        <p data-aos="fade-right" data-aos-delay="200"><strong class="gold">Found:</strong>  Preserved in Andean highlands</p>
+        <p data-aos="fade-right" data-aos-delay="200">
+Made of vibrant macaw and parrot feathers, this ornate headdress symbolized divine authority. Worn only by the emperor, it signified power, cosmic connection, and elite status.
+        </p>
+      </div>
+ 
+      <div class="artifact-model">
+        <model-viewer
+          src="https://file.garden/aCVKLOhiUQoQJpEw/A_royal_Inca_feather__0521021658_texture.glb"
+          alt="Sapa Inca’s Feather Headdress"
+          auto-rotate
+          camera-controls
+          style="width: 100%; height: 600px;">
+        </model-viewer>
+      </div>
+    </div>
+  </section>
+ 
+  <section class="artifact-section">
+  <div class="artifact-content">
+    <div class="artifact-model">
+      <model-viewer
+        src="https://file.garden/aCVKLOhiUQoQJpEw/A_small_Inca_silver_l_0521022002_texture.glb"
+        alt="Ceremonial Silver Llama"
+        auto-rotate
+        camera-controls
+        style="width: 100%; height: 600px;">
+      </model-viewer>
+    </div>
+    <div class="artifact-text">
+      <h2>Ceremonial Silver Llama</h2>
+      <p><strong class="gold">Period:</strong>Late 15th century</p>
+      <p><strong class="gold">Found:</strong> Lake Titicaca region</p>
+      <p>
+A small offering sculpture representing a sacred animal to the Incas. Llamas were central to transportation and agriculture, and silver versions were used in rituals for blessings and fertility.
+      </p>
+    </div>
+  </div>
+</section>
+
+
+<section class="artifact-section">
+    <div class="artifact-content">
+      <div class="artifact-text">
+        <h2 data-aos="fade-right" data-aos-delay="200">Inca Tunic (Uncu)</h2>
+        <p data-aos="fade-right" data-aos-delay="200"><strong class="gold">Period:</strong>15th century</p>
+        <p data-aos="fade-right" data-aos-delay="200"><strong class="gold">Found:</strong>Tombs in the Sacred Valley</p>
+        <p data-aos="fade-right" data-aos-delay="200">
+Handwoven with camelid fibers and natural dyes, these tunics displayed status and identity through geometric patterns. The finest versions were worn by nobility and made by aclla (chosen women).
+       </p>
+      </div>
+ 
+      <div class="artifact-model">
+        <model-viewer
+          src="https://file.garden/aCVKLOhiUQoQJpEw/A_handwoven_Inca_tuni_0521022358_texture.glb"
+          alt="Inca Tunic (Uncu)"
+          auto-rotate
+          camera-controls
+          style="width: 100%; height: 600px;">
+        </model-viewer>
+      </div>
+    </div>
+  </section>
+  
+<section id="social-structure" class="social-section">
+  <button id="prev" class="arrow left">&#10094;</button>
+
+  <div class="content">
+    <div class="text">
+      <h2 id="title">Sapa Inca</h2>
+      <p id="description">
+At the pinnacle stood the Sapa Inca, considered a living god and direct descendant of Inti, the Sun God. His word was law. He owned all land, resources, and people. The Sapa Inca wore elaborate garments, lived in gold-adorned palaces, and was carried on a litter by nobles. He led armies, enacted laws, and organized massive public works, guided by oracles and priests.</p>
+    </div>
+
+    <div class="model-viewer-container">
+      <model-viewer id="model" src="https://file.garden/aCVKLOhiUQoQJpEw/A_powerful_Inca_emper_0521023939_texture.glb" 
+      alt="Huey Tlatoani" auto-rotate camera-controls background-color="#000000">
+     </model-viewer>
+    </div>
+  </div>
+
+  <button id="next" class="arrow right">&#10095;</button>
+</section>
+
+<style>
+.social-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  height: 100vh;
+  background-color: #000;
+  color: white;
+  padding: 0 40px;
+  overflow: hidden;
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1400px;
+}
+
+.text {
+  width: 50%;
+  padding-right: 40px;
+  z-index: 1;
+}
+
+.text h2 {
+  color: gold;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.text p {
+  font-size: 1.2rem;
+  line-height: 1.6;
+}
+
+.model-viewer-container {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: gold;
+  font-size: 2rem;
+  cursor: pointer;
+  z-index: 10;
+  transition: transform 0.2s ease;
+}
+
+.arrow:hover {
+  transform: translateY(-50%) scale(1.2);
+}
+
+.arrow.left {
+  left: 20px;
+}
+
+.arrow.right {
+  right: 20px;
+}
+
+</style>
+
+<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+
+<script>
+  const slides = [
+    {
+      title: "Sapa Inca",
+      description: `At the pinnacle stood the Sapa Inca, considered a living god and direct descendant of Inti, the Sun God. His word was law. He owned all land, resources, and people. The Sapa Inca wore elaborate garments, lived in gold-adorned palaces, and was carried on a litter by nobles. He led armies, enacted laws, and organized massive public works, guided by oracles and priests.`,
+      model: "https://file.garden/aCVKLOhiUQoQJpEw/A_powerful_Inca_emper_0521023939_texture.glb"
+    },
+    {
+      title: "Nobles",
+      description: `Below the emperor was the nobility, including royal relatives (panaka) and high-ranking officials. These individuals governed regions, led military campaigns, collected tribute, and maintained imperial order.
+
+Nobles lived in stone houses with running water, unlike commoners.
+
+They were educated in state schools (Yachaywasi), trained in astronomy, history, and administration.
+
+There was also a group of privileged non-Inca nobles—leaders of conquered tribes who were granted status in exchange for loyalty.`,
+      model: "https://file.garden/aCVKLOhiUQoQJpEw/High_ranking_Inca_nob_0521024429_texture.glb"
+    },
+    {
+      title: "Priests",
+      description: `Priests formed a sacred elite with enormous influence. They organized festivals, interpreted omens, and maintained temples such as Coricancha. Chief among them was the High Priest of the Sun, who often advised the emperor.
+
+They were astronomers, timekeepers, and controlled agricultural calendars.
+
+Rituals involved offerings, animal sacrifices, and, in rare cases, human sacrifice during exceptional events`,
+      model: "https://file.garden/aCVKLOhiUQoQJpEw/Inca_priests_performi_0521025011_texture.glb"
+    },
+    {
+      title: "Artisans & Farmers",
+      description: `This middle tier included:
+
+Farmers: The backbone of the empire, cultivating maize, potatoes, and quinoa on terraced fields. They also raised llamas and alpacas.
+
+Artisans: Weavers, potters, and metalworkers who produced tools, clothing, and ceremonial objects.
+
+Engineers and builders: Expert masons who built roads, fortresses, and aqueducts without the use of wheels or mortar.
+
+These groups were respected for their skills but were tightly controlled by the state.
+
+`,
+      model: "https://file.garden/aCVKLOhiUQoQJpEw/Inca_artisans_carving_0521025549_texture.glb"
+    },
+    {
+      title: "Mit’a Laborers",
+      description: `All able-bodied commoners had to contribute mit’a—a rotational labor tax. Instead of paying with money, they worked for the state part of the year: building roads, serving in the army, mining, or farming on state lands.
+
+Mit’a workers were often organized into ayllus, extended family groups who shared land and responsibilities.
+
+Despite the workload, the system ensured food security and mutual support during hard times.`,
+      model: "https://file.garden/aCVKLOhiUQoQJpEw/A_Inca_mit%E2%80%99a_labore_0521030447_texture.glb"
+    }
+  ];
+
+  let currentSlide = 0;
+  const title = document.getElementById("title");
+  const description = document.getElementById("description");
+  const model = document.getElementById("model");
+
+  function updateSlide() {
+    const s = slides[currentSlide];
+    title.textContent = s.title;
+    description.textContent = s.description;
+    model.setAttribute("src", s.model);
+    model.setAttribute("alt", s.title);
+  }
+
+  document.getElementById("prev").addEventListener("click", () => {
+    currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+    updateSlide();
+  });
+
+  document.getElementById("next").addEventListener("click", () => {
+    currentSlide = (currentSlide + 1) % slides.length;
+    updateSlide();
+  });
+</script>
+
+<section id="economy" style="display: flex; height: 100vh; background: #000000; color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; padding: 40px;">
+  <!-- Текстова частина -->
+  <div style="flex: 1; padding-right: 40px; max-width: 50%; display: flex; flex-direction: column; justify-content: center;">
+    <h2 style="color: #d4af37; font-size: 3rem; margin-bottom: 30px;">Economy of the Inca Civilization</h2>
+    <p style="font-size: 1.4rem; line-height: 1.8; margin-bottom: 20px;">
+The Inca economy was centrally planned and based on reciprocity, labor, and resource redistribution. Instead of money, goods and services were exchanged, and the state controlled production and distribution. Agricultural surpluses were stored in state warehouses and redistributed during emergencies or festivals. Terracing, irrigation, and llama caravans supported a strong agricultural foundation.
+</p>
+  </div>
+
+  <!-- 3D модель -->
+  <div style="flex: 1; max-width: 50%; display: flex; justify-content: center; align-items: center;">
+    <model-viewer src="https://file.garden/aCVKLOhiUQoQJpEw/%E2%80%9CHighly_detailed_3D_0521022937_texture.glb" 
+                  alt="Maya Cacao Bean Sack" 
+                  camera-controls 
+                  auto-rotate 
+                  style="width: 80%; height: 80%;">
+    </model-viewer>
+  </div>
+</section>
+
+<section id="taxes-labor" style="display: flex; height: 100vh; background: #000000; color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; padding: 40px;">
+  <!-- 3D модель -->
+  <div style="flex: 1; max-width: 50%; display: flex; justify-content: center; align-items: center;">
+    <!-- Тут вставиш свою модель робітника чи сцени будівництва -->
+    <model-viewer src="https://file.garden/aCVKLOhiUQoQJpEw/_An_Aztec_slave_bare_0521023459_texture.glb" 
+                  alt="Aztec Worker Scene" 
+                  camera-controls 
+                  auto-rotate 
+                  style="width: 80%; height: 80%;">
+    </model-viewer>
+  </div>
+
+  <!-- Текстова частина -->
+  <div style="flex: 1; padding-left: 40px; max-width: 50%; display: flex; flex-direction: column; justify-content: center;">
+    <h2 style="color: #d4af37; font-size: 3rem; margin-bottom: 30px;">Taxes and Labor in Inca Society</h2>
+    <p style="font-size: 1.3rem; line-height: 1.8; margin-bottom: 20px;">
+Rather than paying taxes with currency, Inca citizens contributed labor through the mit’a system. Each community was required to provide workers for public projects such as road building, military service, or temple construction. In return, the state provided food, clothing, or protection. This labor tax system was a core part of maintaining infrastructure and imperial control across the vast empire.
+    </p>
+  </div>
+</section>
+
+
+<footer style="background-color: #0e0e0e; color: #fff; text-align: center; padding: 40px 20px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+  <p style="font-size: 1rem; margin-bottom: 10px;">© 2025 <strong>Empires of the Past</strong>. Created by Sofiia (Sonik)</p>
+  <p style="font-size: 1.1rem; margin-bottom: 10px;">Thanks for exploring the ancient world with us!</p>
+  <p style="font-size: 1rem;">Contact: <a href="mailto:explore.past.with.us@gmail.com" style="color: #d4af37; text-decoration: none;">explore.past.with.us@gmail.com</a></p>
+</footer>
+
+
+<script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer/dist/model-viewer.min.js"></script>
+
+<!-- Підключення model-viewer -->
+<script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer/dist/model-viewer.min.js"></script>
+
+
+<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+
+
+
+<script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer/dist/model-viewer.min.js"></script>
+
+
+</body>
+</html>

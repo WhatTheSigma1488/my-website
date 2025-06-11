@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aztec Civilization</title>
+  <link rel="stylesheet" href="aztec.css" />
+  <script src="aztec.js"></script>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Open+Sans&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/three@0.153.0/build/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.153.0/examples/js/loaders/GLTFLoader.js"></script>
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+  <!-- AOS CSS -->
+<link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+
+
+</head>
+<body>
+    <header class="top-nav">
+        <nav>
+          <ul>
+            <li><a href="#geography">Geography</a></li>
+            <li><a href="#religion">Religion</a></li>
+            <li><a href="#artifact">Artifacts</a></li>
+            <li><a href="#social-structure">Social Structure & Politics</a></li>
+            <li><a href="#economy">Economy</a></li>
+            <li><a href="#taxes-labor">Taxes Labor</a></li>
+          </ul>
+        </nav>
+      </header>
+
+        <section class="aztec-hero">
+    <div class="overlay"></div>
+    <div class="aztec-content">
+      <h1 data-aos="fade-top" data-aos-delay="200">Aztec Civilization</h1>
+      <p data-aos="fade-top" data-aos-delay="200">A powerful civilization built on stone, stars, and sacrifice. <br> Discover the legends and legacy of the mighty Aztecs.</p>
+      <div class="scroll-down">↓</div>
+    </div>
+  </section>
+
+<section id="geography" class="aztec-section">
+  <div class="aztec-text" id="aztecInfoPanel">
+    <h2 data-aos="fade-top" data-aos-delay="200">Aztec Empire</h2>
+    <p data-aos="fade-top" data-aos-delay="200">Click on any golden point on the map to uncover the wonders of the Aztec world: its cities, culture, and sacred places.</p>
+  </div>
+  <div class="aztec-map-wrapper">
+    <img src="https://i.postimg.cc/66RGN2dQ/Mao-New-Aztec.png" alt="Aztec Map" class="aztec-map" />
+    
+    <!-- Points -->
+    <div class="aztec-map-point" style="top: 41%; left: 49%;" onclick="aztecShowInfo('tenochtitlan')" title="Tenochtitlan"></div>
+    <div class="aztec-map-point" style="top: 39%; left: 51%;" onclick="aztecShowInfo('tlatelolco')" title="Tlatelolco"></div>
+    <div class="aztec-map-point" style="top: 43%; left: 52%;" onclick="aztecShowInfo('texcoco')" title="Texcoco"></div>
+    <div class="aztec-map-point" style="top: 45%; left: 46%;" onclick="aztecShowInfo('tlacopan')" title="Tlacopan"></div>
+    <div class="aztec-map-point" style="top: 53%; left: 60%;" onclick="aztecShowInfo('cholula')" title="Cholula"></div>
+    <div class="aztec-map-point" style="top: 35%; left: 56%;" onclick="aztecShowInfo('teotihuacan')" title="Teotihuacan"></div>
+  </div>
+</section>
+
+
+
+
+
+
+<section id="religion" class="religion-section">
+  <div class="god-model">
+    <model-viewer id="godModel" src="" alt="Aztec God 3D Model" auto-rotate camera-controls></model-viewer>
+  </div>
+  <div class="god-info">
+    <h2 id="godName"></h2>
+    <p id="godText"></p>
+  </div>
+  <button class="nav-arrow left" onclick="prevGod()">&#8592;</button>
+  <button class="nav-arrow right" onclick="nextGod()">&#8594;</button>
+</section>
+
+<style>
+  .religion-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #0c0c0c;
+    color: white;
+    position: relative;
+    height: 100vh;
+    padding: 2rem;
+    overflow: hidden;
+  }
+
+  .god-model {
+    flex: 1;
+    max-width: 50%;
+    padding: 1rem;
+  }
+
+  model-viewer {
+    width: 100%;
+    height: 80vh;
+  }
+
+  .god-info {
+    flex: 1;
+    padding: 1rem;
+    max-width: 50%;
+  }
+
+  .god-info h2 {
+    color: gold;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .god-info p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+  }
+
+  .nav-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 3rem;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    z-index: 10;
+    transition: color 0.3s;
+  }
+
+  .nav-arrow:hover {
+    color: gold;
+  }
+
+  .nav-arrow.left {
+    left: 1rem;
+  }
+
+  .nav-arrow.right {
+    right: 1rem;
+  }
+</style>
+
+<script>
+  const gods = [
+    {
+      name: " Huitzilopochtli",
+      text: "Huitzilopochtli was the supreme deity of the Aztecs — the god of war, the sun, and the patron of the city of Tenochtitlan. His name means Hummingbird of the South. He led the Mexica people on their legendary migration and demanded regular offerings of blood and hearts to keep the sun rising. Temples to Huitzilopochtli towered over cities, and his cult was closely tied to the Aztec expansionist state.",
+      model: "https://file.garden/aCVKLOhiUQoQJpEw/A_powerful_Aztec_god__0520040032_texture.glb"
+    },
+    {
+      name: "Quetzalcoatl",
+      text: "Quetzalcoatl, the Feathered Serpent, was one of the most revered gods in Mesoamerican mythology — a symbol of wisdom, creativity, and balance. He was associated with wind, dawn, and the planet Venus, and was credited with creating humanity alongside other gods.",
+      model: "https://file.garden/aCVKLOhiUQoQJpEw/The_Feathered_Serpent_0520040516_texture.glb"
+    },
+    {
+      name: " Tezcatlipoca",
+      text: "Tezcatlipoca, the Smoking Mirror, was a god of the night sky, chaos, conflict, and destiny. He was a trickster, rival to Quetzalcoatl, and was often feared more than loved. His obsidian mirror revealed truth, but also illusions and doom.",
+      model: "https://file.garden/aCVKLOhiUQoQJpEw/The_god_of_night_sor_0520041117_texture.glb"
+    },
+    {
+      name: "Tlaloc",
+      text: "Tlaloc controlled the rains and thus had power over life and death. He was worshipped by both the Aztecs and earlier civilizations, such as the Teotihuacanos. While he could be benevolent and bring bountiful crops, he could also unleash devastating storms and droughts when angered.",
+      model: "https://file.garden/aCVKLOhiUQoQJpEw/The_rain_god_associa_0520041459_texture.glb"
+    },
+    {
+      name: "Xipe Totec",
+      text: "Xipe Totec symbolized life through death. As the god of agriculture, rebirth, and renewal, he was associated with the cycle of growth — where seeds must die to sprout anew. His priests wore flayed human skin to mimic the god's shedding of old to reveal new. This gruesome imagery represented the fertile transformation of the earth. Despite the horror, Xipe Totec was seen as vital to continued life and abundance.",
+      model: "https://file.garden/aCVKLOhiUQoQJpEw/The_god_of_agricultur_0520042021_texture.glb"
+    },
+    {
+      name: "Coatlicue",
+      text: "Coatlicue, She of the Serpent Skirt, was the primordial earth goddess and mother of gods, including Huitzilopochtli. Her myth is tragic and powerful — after becoming miraculously pregnant, she was attacked by her children in shame, only for her unborn son Huitzilopochtli to be born in full armor and slay them in defense.",
+      model: "https://file.garden/aCVKLOhiUQoQJpEw/_The_earth_mother_god_0520042813_texture.glb"
+    }
+  ];
+
+  let current = 0;
+
+  function updateGod() {
+    document.getElementById("godName").textContent = gods[current].name;
+    document.getElementById("godText").textContent = gods[current].text;
+    document.getElementById("godModel").src = gods[current].model;
+  }
+
+  function nextGod() {
+    current = (current + 1) % gods.length;
+    updateGod();
+  }
+
+  function prevGod() {
+    current = (current - 1 + gods.length) % gods.length;
+    updateGod();
+  }
+
+  window.addEventListener("DOMContentLoaded", updateGod);
+</script>
+
+<!-- Don't forget to include model-viewer script -->
+<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+
+  <section id="artifact" class="artifact-section">
+    <div class="artifact-content">
+      <div class="artifact-text">
+        <h2 data-aos="fade-right" data-aos-delay="200">The Aztec Serpent Shield</h2>
+        <p data-aos="fade-right" data-aos-delay="200"><strong class="gold">Period:</strong> 1400–1521 CE</p>
+        <p data-aos="fade-right" data-aos-delay="200"><strong class="gold">Found:</strong> Likely central Mexico (Tenochtitlan region)</p>
+        <p data-aos="fade-right" data-aos-delay="200">
+The Chimalli was a circular shield used by Aztec warriors, often richly decorated with feathers, stones, and intricate serpent motifs symbolizing power and protection. Serpents were sacred animals associated with Quetzalcoatl, the feathered serpent god, representing wisdom and fertility.        </p>
+        <p data-aos="fade-right" data-aos-delay="200">
+This shield was both a defensive tool and a ceremonial object, demonstrating the warrior’s status and spiritual connection. Many shields were crafted to impress enemies and honor the gods in battle rituals.
+        </p>
+      </div>
+ 
+      <div class="artifact-model">
+        <model-viewer
+          src="https://file.garden/aCVKLOhiUQoQJpEw/A_round_Aztec_shield__0520043411_texture.glb"
+          alt="The Aztec Serpent Shield"
+          auto-rotate
+          camera-controls
+          style="width: 100%; height: 600px;">
+        </model-viewer>
+      </div>
+     
+    </div>
+  </section>
+
+  
+  <section class="artifact-section">
+    <div class="artifact-content">
+      <div class="artifact-model">
+        <model-viewer
+          src="https://file.garden/aCVKLOhiUQoQJpEw/_A_human_skull_comple_0520044416_texture.glb"
+          alt="Turquoise Mosaic Skull"
+          auto-rotate
+          camera-controls
+          style="width: 100%; height: 600px;">
+        </model-viewer>
+      </div>
+ 
+      <div class="artifact-text">
+        <h2>Turquoise Mosaic Skull</h2>
+        <p><strong class="gold">Period:</strong>  1400–1521 CE</p>
+        <p><strong class="gold">Found:</strong> Likely Tenochtitlan, now part of the British Museum collection</p>
+        <p>
+This haunting skull is adorned with a detailed mosaic of turquoise, shell, and other semi-precious stones, believed to represent a deity — possibly Tezcatlipoca, the god of sorcery and fate. The turquoise would’ve symbolized both beauty and divine energy.        </p>
+      </div>
+    </div>
+  </section>
+ 
+  <section class="artifact-section">
+    <div class="artifact-content">
+      <div class="artifact-text">
+        <h2 data-aos="fade-right" data-aos-delay="200"> Ceremonial Obsidian Blade</h2>
+        <p data-aos="fade-right" data-aos-delay="200"><strong class="gold">Period:</strong> 1300–1500 CE</p>
+        <p data-aos="fade-right" data-aos-delay="200"><strong class="gold">Found:</strong> Central Mexico</p>
+        <p data-aos="fade-right" data-aos-delay="200">
+Used in rituals — particularly in human sacrifice — obsidian blades were sharp as razors and sacred tools in the Aztec world. This ceremonial blade has engravings of serpents and the god Huitzilopochtli, indicating it was not merely functional but deeply spiritual.
+        </p>
+        <p data-aos="fade-right" data-aos-delay="200">
+Obsidian was revered for its cutting power and association with the divine. Many such blades were buried near temples or found in tombs of high-ranking priests.
+        </p>
+      </div>
+ 
+      <div class="artifact-model">
+        <model-viewer
+          src="https://file.garden/aCVKLOhiUQoQJpEw/_A_ceremonial_obsidia_0520044754_texture.glb"
+          alt="Ceremonial Obsidian Blade"
+          auto-rotate
+          camera-controls
+          style="width: 100%; height: 600px;">
+        </model-viewer>
+      </div>
+    </div>
+  </section>
+ 
+  <section class="artifact-section">
+  <div class="artifact-content">
+    <div class="artifact-model">
+      <model-viewer
+        src="https://file.garden/aCVKLOhiUQoQJpEw/_A_stone_statue_of_an_0520045243_texture.glb"
+        alt="Eagle Warrior Statue"
+        auto-rotate
+        camera-controls
+        style="width: 100%; height: 600px;">
+      </model-viewer>
+    </div>
+    <div class="artifact-text">
+      <h2>Eagle Warrior Statue</h2>
+      <p><strong class="gold">Period:</strong>1450 CE</p>
+      <p><strong class="gold">Found:</strong> Templo Mayor, Mexico City</p>
+      <p>
+This life-size statue depicts a member of the elite Eagle Warriors — a military order devoted to Huitzilopochtli. The sculpture shows a man in full eagle regalia, crouched in a dynamic pose, as if ready to strike.
+      </p>
+    </div>
+  </div>
+</section>
+
+
+<section class="artifact-section">
+    <div class="artifact-content">
+      <div class="artifact-text">
+        <h2 data-aos="fade-right" data-aos-delay="200">Gold Nose Ornament</h2>
+        <p data-aos="fade-right" data-aos-delay="200"><strong class="gold">Period:</strong>1400–1520 CE</p>
+        <p data-aos="fade-right" data-aos-delay="200"><strong class="gold">Found:</strong>  Guerrero region, Mexico</p>
+        <p data-aos="fade-right" data-aos-delay="200">
+This delicately crafted ornament would be worn through the septum by nobles or priests. Made of hammered gold, it reflects the Aztec elite’s love for ornamentation and the political weight of appearance.
+        </p>
+      </div>
+ 
+      <div class="artifact-model">
+        <model-viewer
+          src="https://file.garden/aCVKLOhiUQoQJpEw/_A_delicate_crescent_0520045815_texture.glb"
+          alt="Gold Nose Ornament"
+          auto-rotate
+          camera-controls
+          style="width: 100%; height: 600px;">
+        </model-viewer>
+      </div>
+    </div>
+  </section>
+  
+<section id="social-structure" class="social-section">
+  <button id="prev" class="arrow left">&#10094;</button>
+
+
+  <div class="content">
+    <div class="text">
+      <h2 id="title">Huey Tlatoani</h2>
+      <p id="description">
+        The Huey Tlatoani was the supreme ruler of the Aztec Empire — both a political leader and a divine figure. He governed the capital Tenochtitlan, oversaw military campaigns, diplomacy, and religious ceremonies, and was believed to be chosen by the gods. His word was law, and his power unquestionable.      
+    </p>
+    </div>
+
+
+    <div class="model-viewer-container">
+      <model-viewer id="model" src="https://file.garden/aCVKLOhiUQoQJpEw/A_powerful_Inca_emper_0521023939_texture.glb"
+      alt="Huey Tlatoani" auto-rotate camera-controls background-color="#000000">
+     </model-viewer>
+    </div>
+  </div>
+
+
+  <button id="next" class="arrow right">&#10095;</button>
+</section>
+
+
+<style>
+.social-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  height: 100vh;
+  background-color: #000;
+  color: white;
+  padding: 0 40px;
+  overflow: hidden;
+}
+
+
+.content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1400px;
+}
+
+
+.text {
+  width: 50%;
+  padding-right: 40px;
+  z-index: 1;
+}
+
+
+.text h2 {
+  color: gold;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+
+.text p {
+  font-size: 1.2rem;
+  line-height: 1.6;
+}
+
+
+.model-viewer-container {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: gold;
+  font-size: 2rem;
+  cursor: pointer;
+  z-index: 10;
+  transition: transform 0.2s ease;
+}
+
+
+.arrow:hover {
+  transform: translateY(-50%) scale(1.2);
+}
+
+
+.arrow.left {
+  left: 20px;
+}
+
+
+.arrow.right {
+  right: 20px;
+}
+
+
+</style>
+
+
+<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+
+
+<script>
+  const slides = [
+    {
+      title: "Huey Tlatoani",
+      description: `The Huey Tlatoani was the supreme ruler of the Aztec Empire — both a political leader and a divine figure. He governed the capital Tenochtitlan, oversaw military campaigns, diplomacy, and religious ceremonies, and was believed to be chosen by the gods. His word was law, and his power unquestionable.`,
+      model: "https://file.garden/aCVKLOhiUQoQJpEw/An_Aztec_emperor_Hue_0520212915_texture.glb"
+    },
+    {
+      title: "Nobility",
+      description: `Nobles were high-ranking officials, priests, judges, and military leaders. They owned land, educated their children in elite schools (calmecac), and played a major role in maintaining order and religious devotion. Many nobles served directly under the emperor and formed the core of the ruling class.`,
+      model: "https://file.garden/aCVKLOhiUQoQJpEw/High_ranking_Inca_nob_0521024429_texture.glb"
+    },
+    {
+      title: "Priests",
+      description: `Priests were deeply respected for their knowledge of rituals, astronomy, and the sacred calendar. They conducted sacrifices, interpreted omens, and maintained the temples. Some priests also served as advisors to rulers and were considered the keepers of divine knowledge.`,
+      model: "https://file.garden/aCVKLOhiUQoQJpEw/_Aztec_priest_perform_0521001130_texture.glb"
+    },
+    {
+      title: "Warriors",
+      description: `Brave warriors who gained prestige through capturing enemies for sacrifice. Elite units like Eagle and Jaguar Warriors were often recruited from noble families, though commoners could rise in rank through military success. They played a key role in expanding the empire.`,
+      model: "https://file.garden/aCVKLOhiUQoQJpEw/_Fierce_Aztec_warrior_0521003936_texture.glb"
+    },
+    {
+      title: "Merchants & Artisans",
+      description: `Pochteca were long-distance traders who traveled far, sometimes acting as spies or diplomats. They gained wealth and status and often operated in guilds. Tolteca (artisans) were respected creators of fine goods, including jewelry, featherwork, and ceramics — crucial for the economy and religious life.`,
+      model: "https://file.garden/aCVKLOhiUQoQJpEw/_Aztec_merchant_at_a__0521001214_texture.glb"
+    },
+    {
+      title: "Commoners",
+      description: `The majority of the population, commoners were farmers, builders, laborers, and simple craftsmen. They paid taxes (usually in goods or labor) and served in the military. Though their lives were hard, some could rise in status through military success or skilled work.`,
+      model: "https://file.garden/aCVKLOhiUQoQJpEw/_Aztec_commoner_worki_0521003433_texture.glb"
+    },
+        {
+      title: "Serfs",
+      description: `Serfs worked on lands owned by nobles or temples. Though not slaves, they had limited rights and were tied to the land. They were essential for agriculture and temple maintenance.`,
+      model: "https://file.garden/aCVKLOhiUQoQJpEw/_Aztec_serf_planting__0521010444_texture.glb"
+    }
+  ];
+
+
+  let currentSlide = 0;
+  const title = document.getElementById("title");
+  const description = document.getElementById("description");
+  const model = document.getElementById("model");
+
+  function updateSlide() {
+    const s = slides[currentSlide];
+    title.textContent = s.title;
+    description.textContent = s.description;
+    model.setAttribute("src", s.model);
+    model.setAttribute("alt", s.title);
+  }
+
+  document.getElementById("prev").addEventListener("click", () => {
+    currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+    updateSlide();
+  });
+
+  document.getElementById("next").addEventListener("click", () => {
+    currentSlide = (currentSlide + 1) % slides.length;
+    updateSlide();
+  });
+</script>
+
+<section id="economy" style="display: flex; height: 100vh; background: #000000; color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; padding: 40px;">
+  <!-- Текстова частина -->
+  <div style="flex: 1; padding-right: 40px; max-width: 50%; display: flex; flex-direction: column; justify-content: center;">
+    <h2 style="color: #d4af37; font-size: 3rem; margin-bottom: 30px;">Economy of the Aztec Civilization</h2>
+    <p style="font-size: 1.4rem; line-height: 1.8; margin-bottom: 20px;">
+The Aztec economy was based on agriculture, tribute, and trade. They used chinampas — floating gardens — to grow crops like maize, beans, and squash, which supported large cities. Conquered regions paid tribute in goods such as food, textiles, and feathers, which helped sustain the empire and its rulers.    </p>
+    <p style="font-size: 1.4rem; line-height: 1.8; margin-bottom: 20px;">
+Markets played a major role, with merchants trading everyday items and luxury goods. Cacao beans and cotton cloth were used as currency, and long-distance traders called Pochteca brought rare items from distant lands. Trade routes and roads kept the empire connected and thriving.
+    </p>
+  </div>
+
+  <!-- 3D модель -->
+  <div style="flex: 1; max-width: 50%; display: flex; justify-content: center; align-items: center;">
+    <model-viewer src="https://file.garden/aCVKLOhiUQoQJpEw/A_close_up_3D_model_o_0521012530_texture.glb" 
+                  alt="Maya Cacao Bean Sack" 
+                  camera-controls 
+                  auto-rotate 
+                  style="width: 80%; height: 80%;">
+    </model-viewer>
+  </div>
+</section>
+
+<section id="taxes-labor" style="display: flex; height: 100vh; background: #000000; color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; padding: 40px;">
+  <!-- 3D модель -->
+  <div style="flex: 1; max-width: 50%; display: flex; justify-content: center; align-items: center;">
+    <!-- Тут вставиш свою модель робітника чи сцени будівництва -->
+    <model-viewer src="https://file.garden/aCVKLOhiUQoQJpEw/Aztec_farmer_harvesti_0521013201_texture.glb" 
+                  alt="Aztec Worker Scene" 
+                  camera-controls 
+                  auto-rotate 
+                  style="width: 80%; height: 80%;">
+    </model-viewer>
+  </div>
+
+  <!-- Текстова частина -->
+  <div style="flex: 1; padding-left: 40px; max-width: 50%; display: flex; flex-direction: column; justify-content: center;">
+    <h2 style="color: #d4af37; font-size: 3rem; margin-bottom: 30px;">Taxes and Labor in Aztec Society</h2>
+    <p style="font-size: 1.3rem; line-height: 1.8; margin-bottom: 20px;">
+Taxes and labor were pillars of the Aztec imperial system. Instead of paying in money, commoners contributed through goods and services. Most citizens, especially farmers, paid taxes in the form of food (like maize), textiles, tools, and other local products. These tributes were collected by appointed officials and sent to the capital, Tenochtitlán, where they supported the nobility, priesthood, military, and the emperor’s court. Each region had specific quotas, and failure to comply could lead to harsh punishments.
+    </p>
+    <p style="font-size: 1.3rem; line-height: 1.8; margin-bottom: 20px;">
+In addition to material tributes, labor was a form of tax. Citizens were often required to participate in state-sponsored projects such as temple construction, road maintenance, and agricultural infrastructure. This system, known as tequio, was a communal obligation rather than slavery. However, actual slavery did exist—often as a result of debt, punishment, or war capture—but enslaved people still retained certain rights and could regain freedom. The combination of labor and tribute ensured that the empire functioned smoothly and remained well-resourced.
+    </p>
+  </div>
+</section>
+
+
+<footer style="background-color: #0e0e0e; color: #fff; text-align: center; padding: 40px 20px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+  <p style="font-size: 1rem; margin-bottom: 10px;">© 2025 <strong>Empires of the Past</strong>. Created by Sofiia (Sonik)</p>
+  <p style="font-size: 1.1rem; margin-bottom: 10px;">Thanks for exploring the ancient world with us!</p>
+  <p style="font-size: 1rem;">Contact: <a href="mailto:explore.past.with.us@gmail.com" style="color: #d4af37; text-decoration: none;">explore.past.with.us@gmail.com</a></p>
+</footer>
+
+
+<script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer/dist/model-viewer.min.js"></script>
+
+<!-- Підключення model-viewer -->
+<script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer/dist/model-viewer.min.js"></script>
+
+
+<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+
+
+
+<script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer/dist/model-viewer.min.js"></script>
+
+<!-- AOS JS -->
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script>
+  AOS.init();
+</script>
+
+
+</body>
+</html>

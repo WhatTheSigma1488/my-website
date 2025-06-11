@@ -1,0 +1,545 @@
+body {
+    margin: 0;
+    font-family: 'Open Sans', sans-serif;
+    background-color: #000;
+    color: #fff;
+  }
+  
+  .maya-hero {
+    position: relative;
+    height: 100vh;
+    background-image: url('https://i.postimg.cc/T19DV1nn/image.png');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    padding-left: 5%;
+  }
+  
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 1;
+  }
+  
+  .maya-content {
+    position: relative;
+    z-index: 2;
+    max-width: 700px;
+  }
+  
+  .maya-content h1 {
+    font-family: 'Cinzel', serif;
+    font-size: 5rem; /* ЗБІЛЬШЕНО */
+    color: #ffc815; /* ЗОЛОТИЙ */
+    margin-bottom: 25px;
+  }
+  
+  .maya-content p {
+    font-size: 1.8rem; /* ЗБІЛЬШЕНО */
+    line-height: 1.8;
+    color: #ffffff; /* БІЛИЙ */
+  }
+  
+  .scroll-down {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 2.5rem;
+    color: #000000; /* ЧОРНИЙ */
+    animation: bounce 2s infinite;
+    z-index: 2;
+    user-select: none;
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translate(-50%, 0); }
+    50%      { transform: translate(-50%, 10px); }
+  }
+  
+  .top-nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: linear-gradient(to right, #000000, #000000);
+    padding: 10px 0;
+    z-index: 1000;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  }
+  
+  .top-nav nav ul {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .top-nav nav ul li a {
+    color: #f0f8ff;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+    transition: color 0.3s;
+  }
+  
+  .top-nav nav ul li a:hover {
+    color: #ffd700; /* золотий */
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  
+.geography-section {
+  height: 100vh; /* Жорстка висота */
+  position: relative;
+  padding: 2em 2em; /* Менше падінгів */
+  background-image: url('https://i.postimg.cc/28PwgS0d/mayaphotochka.jpg');
+  background-size: cover;
+  background-position: center;
+  color: white;
+  overflow: hidden;
+}
+
+
+
+.geography-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* затемнення */
+  z-index: 1;
+}
+
+.highlight-object {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 2;
+    pointer-events: none;
+    user-select: none;
+  }
+
+.geography-text {
+  position: relative;
+  z-index: 3;
+  max-width: 700px;
+  margin-left: 5%;
+  padding: 2em;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 1em;
+  font-family: 'Open Sans', sans-serif;
+}
+
+#geography .maya-info-panel h2 {
+  color: #d4af37; /* золотий */
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  font-family: 'Cormorant Garamond', serif;
+}
+
+#geography .maya-info-panel p {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.7rem;
+  line-height: 1.7;
+  color: #eee;
+  margin-bottom: 1.2em;
+}
+
+
+#geography.maya-geo-section {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  background: #222;
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#geography .maya-info-panel {
+  flex: 1;
+  padding: 40px;
+  background: #1a1a1a;
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: #eee;
+  user-select: none;
+  overflow-y: auto;
+}
+
+#geography .maya-map-container {
+  flex: 1;
+  position: relative;
+  background: #000;
+}
+
+#geography .maya-map {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  user-select: none;
+}
+
+#geography .maya-map-point {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  background: #000;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.4);
+}
+
+#geography .maya-map-point:hover {
+  transform: scale(1.5);
+  box-shadow: 0 0 12px #fff;
+}
+
+  .model-container {
+    flex: 1;
+    max-width: 600px;
+  }
+ 
+  body, html {
+    margin: 0;
+    padding: 0;
+    background-color: #000;
+    color: #fff;
+    font-family: 'Lato', sans-serif;
+  }
+ 
+  .intro-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 60px 40px;
+    gap: 50px;
+    background: linear-gradient(to top, #000000cc, transparent 70%);
+    min-height: 100vh;
+    opacity: 0;
+    animation: fadeIn 1.5s forwards;
+  }
+ 
+  .text-content {
+    flex: 1;
+  }
+ 
+  .text-content h1 {
+    font-family: 'Cinzel', serif;
+    font-size: 3.5rem;
+    color: #d4af37;
+    margin-bottom: 0.3em;
+  }
+ 
+  .text-content p {
+    font-size: 1.3rem;
+    line-height: 1.6;
+  }
+ 
+ 
+  @media (max-width: 768px) {
+    .intro-section {
+      flex-direction: column;
+      padding: 40px 20px;
+    }
+ 
+    .model-container {
+      max-width: 100%;
+      margin-top: 30px;
+    }
+  }
+ 
+  /* Анімація появи */
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
+    }
+  }
+ 
+  .artifact-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+ 
+  .artifact-text {
+    flex: 1 1 400px;
+    font-family: 'Georgia', serif;
+    font-size: 1.1rem;
+    line-height: 1.6;
+  }
+ 
+  .artifact-text h2 {
+    font-size: 3rem; /* заголовок */
+    color: gold;
+  }
+ 
+  .gold {
+    color: gold;
+  }
+
+
+ 
+  @media (max-width: 768px) {
+    .artifact-content {
+      flex-direction: column;
+      align-items: center;
+    }
+ 
+    .artifact-text {
+      order: 1;
+    }
+  }
+ 
+  .artifact-text p {
+    font-size: 1.6rem; /* текст */
+    line-height: 1.8;
+  }
+
+
+  .artifact-section {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    height: 100vh;
+    padding: 40px;
+    gap: 40px;
+    color: white;
+  }
+ 
+  .artifact-model {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+ 
+  .artifact-model model-viewer {
+    width: 100%;
+    max-width: 700px;
+    height: 700px;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+  .artifact-section {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    height: 100vh;
+    padding: 40px;
+    gap: 40px;
+    color: white;
+  }
+
+
+.model-container, .text-container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 9rem;
+}
+
+
+.text-container {
+  flex-direction: column;
+  text-align: left;
+  max-width: 600px;
+}
+
+
+.golden-title {
+  color: gold;
+  font-family: 'Georgia', serif;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  opacity: 0;
+  animation: fadeInText 1s ease forwards 0.5s;
+}
+
+
+.text-container p {
+  font-family: 'Arial', sans-serif;
+  font-size: 1.2rem;
+  line-height: 1.5;
+  opacity: 0;
+  animation: fadeInText 1s ease forwards 1.2s;
+}
+
+
+@keyframes fadeInText {
+  to {
+    opacity: 1;
+  }
+}
+
+
+/* Адаптивність для мобільних */
+@media (max-width: 768px) {
+  .artifact-section {
+    flex-direction: column;
+  }
+  .model-container, .text-container {
+    flex: none;
+    width: 100%;
+    padding: 1rem;
+  }
+  .text-container {
+    max-width: 100%;
+    text-align: center;
+  }
+}
+
+
+.artifact-section {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  height: 100vh;
+  padding: 40px;
+  gap: 40px;
+  color: white;
+}
+
+
+.artifact-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+
+.artifact-text {
+  flex: 1 1 400px;
+  font-family: 'Georgia', serif;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+
+.artifact-text h2 {
+  font-size: 3rem;
+  color: gold;
+}
+
+
+.artifact-text p {
+  font-size: 1.6rem;
+  line-height: 1.8;
+}
+
+
+.artifact-model {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.artifact-model model-viewer {
+  width: 100%;
+  max-width: 700px;
+  height: 700px;
+}
+
+
+@media (max-width: 768px) {
+  .artifact-section {
+    flex-direction: column;
+    padding: 40px 20px;
+  }
+
+
+  .artifact-model {
+    max-width: 100%;
+    margin-top: 30px;
+  }
+}
+
+.maya-geo-section {
+  position: relative;
+  background-color: #111;
+  color: white;
+  padding: 40px;
+  font-family: 'Georgia', serif;
+}
+
+.maya-info-panel {
+  max-width: 800px;
+  margin: 0 auto 20px;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-left: 4px solid gold;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.maya-map-container {
+  position: relative;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.maya-map {
+  width: 100%;
+  height: auto;
+  display: block;
+  border: 2px solid #444;
+}
+
+.maya-map-point {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  background-color: gold;
+  border: 2px solid white;
+  border-radius: 50%;
+  cursor: pointer;
+  transform: translate(-50%, -50%);
+  transition: transform 0.2s ease;
+}
+
+.maya-map-point:hover {
+  transform: translate(-50%, -50%) scale(1.3);
+}

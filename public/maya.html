@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Maya Civilization</title>
+  <link rel="stylesheet" href="maya.css" />
+  <script src="maya.js"></script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Open+Sans&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/three@0.153.0/build/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.153.0/examples/js/loaders/GLTFLoader.js"></script>
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+
+
+
+
+
+</head>
+<body>
+    <header class="top-nav">
+        <nav>
+          <ul>
+            <li><a href="#geography">Geography</a></li>
+            <li><a href="#religion">Religion</a></li>
+            <li><a href="#artifact">Artifacts</a></li>
+            <li><a href="#social-structure">Social Structure & Politics</a></li>
+            <li><a href="#economy">Economy</a></li>
+            <li><a href="#taxes-labor">Taxes Labor</a></li>
+          </ul>
+        </nav>
+      </header>
+      
+  <section class="maya-hero">
+    <div class="overlay"></div>
+    <div class="maya-content">
+      <h1  data-aos="fade-top" data-aos-delay="200">Maya Civilization</h1>
+      <p  data-aos="fade-top" data-aos-delay="200">One of the most advanced ancient civilizations in the Americas,<br> known for their writing, mathematics, and monumental architecture.</p>
+      <div class="scroll-down">↓</div>
+    </div>
+  </section>
+
+<section id="geography" class="maya-geo-section">
+  <div class="maya-info-panel" id="mayaInfoPanel">
+    <p data-aos="fade-right" data-aos-delay="200">
+      Click on any point on the map to explore the geography of the Maya civilization — their mountains, jungles, rivers, and ancient cities.
+    </p>
+  </div>
+  <div class="maya-map-container">
+    <img src="https://i.postimg.cc/K8BhQbL4/newMap.png" alt="Maya Map" class="maya-map" />
+    <!-- Map Points -->
+    <div class="maya-map-point" style="top: 43%; left: 56%;" onclick="mayaShowInfo('tikal')" title="Tikal"></div>
+    <div class="maya-map-point" style="top: 56%; left: 67%;" onclick="mayaShowInfo('copan')" title="Copán"></div>
+    <div class="maya-map-point" style="top: 46%; left: 49%;" onclick="mayaShowInfo('palenque')" title="Palenque"></div>
+    <div class="maya-map-point" style="top: 38%; left: 70%;" onclick="mayaShowInfo('chichen_itza')" title="Chichén Itzá"></div>
+    <div class="maya-map-point" style="top: 51%; left: 53%;" onclick="mayaShowInfo('calakmul')" title="Calakmul"></div>
+    <div class="maya-map-point" style="top: 60%; left: 60%;" onclick="mayaShowInfo('uxmal')" title="Uxmal"></div>
+    <div class="maya-map-point" style="top: 48%; left: 60%;" onclick="mayaShowInfo('bonampak')" title="Bonampak"></div>
+    <div class="maya-map-point" style="top: 54%; left: 50%;" onclick="mayaShowInfo('yaxchilan')" title="Yaxchilán"></div>
+  </div>
+</section>
+
+
+<section id="religion" class="religion-section">
+  <div class="god-model">
+    <model-viewer id="godModel" src="" alt="Maya God 3D Model" auto-rotate camera-controls></model-viewer>
+  </div>
+  <div class="god-info">
+    <h2 id="godName"></h2>
+    <p id="godText"></p>
+  </div>
+  <button class="nav-arrow left" onclick="prevGod()">&#8592;</button>
+  <button class="nav-arrow right" onclick="nextGod()">&#8594;</button>
+</section>
+
+<style>
+  .religion-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #0c0c0c;
+    color: white;
+    position: relative;
+    height: 100vh;
+    padding: 2rem;
+    overflow: hidden;
+  }
+
+  .god-model {
+    flex: 1;
+    max-width: 50%;
+    padding: 1rem;
+  }
+
+  model-viewer {
+    width: 100%;
+    height: 80vh;
+  }
+
+  .god-info {
+    flex: 1;
+    padding: 1rem;
+    max-width: 50%;
+  }
+
+  .god-info h2 {
+    color: gold;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .god-info p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+  }
+
+  .nav-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 3rem;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    z-index: 10;
+    transition: color 0.3s;
+  }
+
+  .nav-arrow:hover {
+    color: gold;
+  }
+
+  .nav-arrow.left {
+    left: 1rem;
+  }
+
+  .nav-arrow.right {
+    right: 1rem;
+  }
+</style>
+
+<script>
+  const gods = [
+    {
+      name: "Itzamna",
+      text: "Itzamna was the wise creator god, ruler of the heavens, and bringer of knowledge. As the god of writing, medicine, and the calendar, he was considered one of the most important deities in the Maya pantheon. His presence symbolized order, wisdom, and cosmic balance.",
+      model: "https://file.garden/aCVKLOhiUQoQJpEw/Create_a_highly_detai_0519033323_texture.glb"
+    },
+    {
+      name: "Kawiil",
+      text: "Kawiil was the powerful god of lightning, strength, and royal power. Often associated with serpents and fire, he symbolized authority and force. He was revered in royal ceremonies as a protector of kings and a wielder of the divine thunderbolt.",
+      model: "https://file.garden/aCVKLOhiUQoQJpEw/Design_a_fierce_and_i_0519034005_texture.glb"
+    },
+    {
+      name: "Chaac",
+      text: "Chaac was the rain god, bringer of storms and fertility. Depicted with an axe that created thunder and rain, he was worshipped for ensuring crops would grow. His role was vital in agricultural cycles and seasonal rituals.",
+      model: "https://file.garden/aCVKLOhiUQoQJpEw/Create_a_dynamic_3D_m_0519034320_texture.glb"
+    },
+    {
+      name: "Ix Chel",
+      text: "Ix Chel, goddess of the moon, fertility, and healing, was deeply respected by women and midwives. She balanced nurturing energy with powerful magical knowledge, embodying the duality of creation and destruction.",
+      model: "https://file.garden/aCVKLOhiUQoQJpEw/Design_an_elegant_and_0519034738_texture.glb"
+    },
+    {
+      name: "Ah Puch",
+      text: "Ah Puch, the god of death and the underworld, was both feared and revered. He ruled over Mitnal, the deepest realm of the afterlife. Though associated with decay, he was also seen as a guide through transformation.",
+      model: "https://file.garden/aCVKLOhiUQoQJpEw/Create_a_chilling_3D__0519035214_texture.glb"
+    },
+    {
+      name: "Hunab Ku",
+      text: "Hunab Ku, the 'Sole God,' was an abstract and mysterious deity. Unlike other gods, he had no form and was not depicted in art. He was considered the cosmic heart, the unifying force behind all creation and the balance of opposites.",
+      model: "https://file.garden/aCVKLOhiUQoQJpEw/Design_an_abstract_c_0519035842_texture.glb"
+    }
+  ];
+
+  let current = 0;
+
+  function updateGod() {
+    document.getElementById("godName").textContent = gods[current].name;
+    document.getElementById("godText").textContent = gods[current].text;
+    document.getElementById("godModel").src = gods[current].model;
+  }
+
+  function nextGod() {
+    current = (current + 1) % gods.length;
+    updateGod();
+  }
+
+  function prevGod() {
+    current = (current - 1 + gods.length) % gods.length;
+    updateGod();
+  }
+
+  window.addEventListener("DOMContentLoaded", updateGod);
+</script>
+
+<!-- Don't forget to include model-viewer script -->
+<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+
+  <section id="artifact" class="artifact-section">
+    <div class="artifact-content">
+      <div class="artifact-text">
+        <h2  data-aos="fade-right" data-aos-delay="200">Jade Ritual Priest Mask</h2>
+        <p  data-aos="fade-right" data-aos-delay="200"><strong class="gold">Period:</strong> ≈ 600–800 AD</p>
+        <p  data-aos="fade-right" data-aos-delay="200"><strong class="gold">Found:</strong> Royal tomb in Palenque, Mexico</p>
+        <p  data-aos="fade-right" data-aos-delay="200">
+          This ceremonial mask, made from finely carved jade, was worn by Maya priests or placed on the faces of deceased rulers. Jade, a sacred material in Maya culture, symbolized fertility, power, and eternal life. The mask’s eyes and mouth are inlaid with polished shell and obsidian, creating a lifelike and powerful expression.
+        </p>
+        <p  data-aos="fade-right" data-aos-delay="200">
+          Used during funerary rituals or high religious ceremonies, the mask helped connect the living with the spiritual world. It was believed to protect and guide the soul through the afterlife, reflecting the Maya’s deep beliefs in cosmic cycles, gods, and transformation.
+        </p>
+      </div>
+ 
+      <div class="artifact-model">
+        <model-viewer
+          src="https://file.garden/aCVKLOhiUQoQJpEw/Mayan_jade_ritual_mas_0514225435_texture.glb"
+          alt="Jade ritual mask"
+          auto-rotate
+          camera-controls
+          style="width: 100%; height: 600px;">
+        </model-viewer>
+      </div>
+     
+    </div>
+  </section>
+
+
+  <section class="artifact-section">
+    <div class="artifact-content">
+      <div class="artifact-model">
+        <model-viewer
+          src="https://file.garden/aCVKLOhiUQoQJpEw/Create_a_detailed_3D__0515025217_texture.glb"
+          alt="Mayan Astronomical Stela"
+          auto-rotate
+          camera-controls
+          style="width: 100%; height: 600px;">
+        </model-viewer>
+      </div>
+ 
+      <div class="artifact-text">
+        <h2 data-aos="fade-left" data-aos-delay="200">Astronomical Stela</h2>
+        <p data-aos="fade-left" data-aos-delay="200"><strong class="gold">Period:</strong> ≈ 600–800 CE</p>
+        <p data-aos="fade-left" data-aos-delay="200"><strong class="gold">Found:</strong> Ancient city of Copán, Honduras</p>
+        <p data-aos="fade-left" data-aos-delay="200">
+          This stone stela features detailed carvings of the sun, moon, planets, and star constellations. The Maya used it as an astronomical calendar to predict eclipses, track seasons, and schedule religious ceremonies. Made from volcanic basalt, its intricate engravings have endured centuries of weathering.
+        </p>
+      </div>
+    </div>
+  </section>
+ 
+  <section class="artifact-section">
+    <div class="artifact-content">
+      <div class="artifact-text">
+        <h2 data-aos="fade-right" data-aos-delay="200">Jade Pendant</h2>
+        <p data-aos="fade-right" data-aos-delay="200"><strong class="gold">Period:</strong> ≈ 600–800 AD</p>
+        <p data-aos="fade-right" data-aos-delay="200"><strong class="gold">Found:</strong> Acropolis of Copán, Honduras</p>
+        <p data-aos="fade-right" data-aos-delay="200">
+          This finely carved jade pendant was discovered in the royal tombs of Copán, one of the major Maya cities. The pendant depicts the face of a noble or deity, surrounded by sacred glyphs. Jade was among the most precious materials for the Maya—symbolizing life, fertility, and divine power.
+        </p>
+        <p data-aos="fade-right" data-aos-delay="200">
+          The pendant was likely worn around the neck by a high-ranking individual during ceremonial occasions. Its craftsmanship and placement in an elite burial suggest spiritual significance, possibly serving as a protective amulet for the afterlife.
+        </p>
+      </div>
+ 
+      <div class="artifact-model">
+        <model-viewer
+          src="https://file.garden/aCVKLOhiUQoQJpEw/Realistic_jade_pendan_0516025859_texture.glb"
+          alt="Jade pendant"
+          auto-rotate
+          camera-controls
+          style="width: 100%; height: 600px;">
+        </model-viewer>
+      </div>
+    </div>
+  </section>
+ 
+  <section class="artifact-section">
+  <div class="artifact-content">
+    <div class="artifact-model">
+      <model-viewer
+        src="https://file.garden/aCVKLOhiUQoQJpEw/Highly_detailed_3D_mo_0516031200_texture.glb"
+        alt="Obsidian Ritual Knife"
+        auto-rotate
+        camera-controls
+        style="width: 100%; height: 600px;">
+      </model-viewer>
+    </div>
+    <div class="artifact-text">
+      <h2 data-aos="fade-left" data-aos-delay="200">Obsidian Ritual Knife</h2>
+      <p data-aos="fade-left" data-aos-delay="200"><strong class="gold">Period:</strong> circa 700 AD</p>
+      <p data-aos="fade-left" data-aos-delay="200"><strong class="gold">Found:</strong> Tikal, Guatemala</p>
+      <p data-aos="fade-left" data-aos-delay="200">
+        This ceremonial knife features a razor-sharp blade made from obsidian, a volcanic glass prized by the Maya for its cutting precision and symbolic power. The handle, often adorned with jade or carved wood, reflects intricate craftsmanship. Used in sacred rituals, including bloodletting and offerings, this knife connected the physical and spiritual worlds, embodying sacrifice and divine communication.
+      </p>
+    </div>
+  </div>
+</section>
+
+
+<section class="artifact-section">
+    <div class="artifact-content">
+      <div class="artifact-text">
+        <h2 data-aos="fade-right" data-aos-delay="200">Mesoamerican Ballgame Hoop</h2>
+        <p data-aos="fade-right" data-aos-delay="200"><strong class="gold">Period:</strong> Approximately 600–900 AD</p>
+        <p data-aos="fade-right" data-aos-delay="200"><strong class="gold">Found:</strong> Excavated at an ancient Mayan ballcourt site in Yucatán, Mexico</p>
+        <p data-aos="fade-right" data-aos-delay="200">
+          This massive stone hoop was used in the traditional Mesoamerican ballgame, a ritualistic sport with deep spiritual meaning. The hoop is carved from weathered stone, featuring faint geometric patterns and signs of wear from centuries of use. Its rough texture and aged appearance reflect its importance as both a sporting and ceremonial artifact in Maya culture.
+        </p>
+      </div>
+ 
+      <div class="artifact-model">
+        <model-viewer
+          src="https://file.garden/aCVKLOhiUQoQJpEw/Create_a_detailed_3D__0516032003_texture.glb"
+          alt="Mesoamerican Ballgame Hoop"
+          auto-rotate
+          camera-controls
+          style="width: 100%; height: 600px;">
+        </model-viewer>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="artifact-section">
+    <div class="artifact-content">
+      <div class="artifact-model">
+        <model-viewer
+          src="https://file.garden/aCVKLOhiUQoQJpEw/Create_a_highly_detai_0516032938_texture.glb"
+          alt="Polychrome Maya pottery plate"
+          auto-rotate
+          camera-controls
+          style="width: 100%; height: 600px;">
+        </model-viewer>
+      </div>
+      <div class="artifact-text">
+        <h2 data-aos="fade-left" data-aos-delay="200" class="golden-title">Polychrome Pottery Plate</h2>
+        <p data-aos="fade-left" data-aos-delay="200"><strong class="gold">Period:</strong> Approximately 600–900 AD</p>
+        <p data-aos="fade-left" data-aos-delay="200"><strong class="gold">Found:</strong> Excavations in the ancient city of Copán, Honduras</p>
+        <p data-aos="fade-left" data-aos-delay="200">This intricately painted pottery plate showcases vibrant colors and detailed designs typical of the Classic Maya period. The motifs depict mythological scenes, gods, and stylized animals, rendered with fine lines and vivid pigments. Used for ceremonial purposes and as luxury household items, these plates reflect the rich artistry of ancient Maya ceramics.</p>
+      </div>
+    </div>
+  </section>
+
+<section id="social-structure" class="social-section">
+  <button id="prev" class="arrow left">&#10094;</button>
+
+  <div class="content">
+    <div class="text">
+      <h2 id="title">Ajaw (King)</h2>
+      <p id="description">
+        The Ajaw was the divine ruler of a Maya city-state. More than just a king, he was seen as a living connection to the gods. He organized wars, led rituals, and maintained cosmic order. His palace stood at the heart of the city, and he wore elaborate headdresses and jade jewelry to symbolize power. His blood was sacred — believed to carry divine essence — and royal bloodletting was a common ritual to please the gods and ensure agricultural fertility.
+      </p>
+    </div>
+
+    <div class="model-viewer-container">
+      <model-viewer id="model" src="https://file.garden/aCVKLOhiUQoQJpEw/Create_a_regal_and_au_0520022613_texture.glb"
+        alt="Ajaw" auto-rotate camera-controls background-color="#000000" style="width: 100%; height: 500px;">
+      </model-viewer>
+    </div>
+  </div>
+
+  <button id="next" class="arrow right">&#10095;</button>
+</section>
+
+<style>
+  .social-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    height: 100vh;
+    background-color: #000;
+    color: white;
+    padding: 0 40px;
+    overflow: hidden;
+  }
+
+  .content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1400px;
+  }
+
+  .text {
+    width: 50%;
+    padding-right: 40px;
+    z-index: 1;
+    font-family: 'Georgia', serif;
+  }
+
+  .text h2 {
+    color: gold;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .text p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+  }
+
+  .model-viewer-container {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: gold;
+    font-size: 2rem;
+    cursor: pointer;
+    z-index: 10;
+    transition: transform 0.2s ease;
+  }
+
+  .arrow:hover {
+    transform: translateY(-50%) scale(1.2);
+  }
+
+  .arrow.left {
+    left: 20px;
+  }
+
+  .arrow.right {
+    right: 20px;
+  }
+</style>
+
+<!-- Обов’язково підключи model-viewer -->
+<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+
+<script>
+  const slides = [
+    {
+      title: "Ajaw (King)",
+      description: `The Ajaw was the divine ruler of a Maya city-state. More than just a king, he was seen as a living connection to the gods. He organized wars, led rituals, and maintained cosmic order. His palace stood at the heart of the city, and he wore elaborate headdresses and jade jewelry to symbolize power. His blood was sacred — believed to carry divine essence — and royal bloodletting was a common ritual to please the gods and ensure agricultural fertility.`,
+      model: "https://file.garden/aCVKLOhiUQoQJpEw/Create_a_regal_and_au_0520022613_texture.glb"
+    },
+    {
+      title: "Nobles",
+      description: `Maya nobles were powerful individuals who surrounded the Ajaw. They were administrators, military leaders, and advisors, often coming from elite bloodlines. Nobles oversaw provinces, collected tribute, and acted as judges. They also had access to education, fine clothing, and elaborate tombs. Their role ensured stability between the royal house and the broader population.`,
+      model: "https://file.garden/aCVKLOhiUQoQJpEw/Design_a_realistic_3D_0520023531_texture.glb"
+    },
+    {
+      title: "Priests",
+      description: `The priesthood was the spiritual backbone of Maya society. Priests interpreted omens, read the sacred calendar, and conducted blood rituals to maintain cosmic balance. They memorized myths, recited them during ceremonies, and were responsible for aligning public life with celestial movements. As keepers of sacred knowledge, they advised rulers and held immense influence.`,
+      model: "https://file.garden/aCVKLOhiUQoQJpEw/Create_a_3D_model_of__0520023927_texture.glb"
+    },
+    {
+      title: "Scribes & Artisans",
+      description: `This class included highly respected individuals who preserved Maya culture. Scribes mastered glyphs and calendrics, recording events and histories. Artisans crafted ceremonial masks, pottery, and intricate murals depicting battles, gods, and rituals. Though not noble by birth, their talents gave them status and proximity to power.`,
+      model: "https://file.garden/aCVKLOhiUQoQJpEw/Design_a_3D_model_of__0520024345_texture.glb"
+    },
+    {
+      title: "Merchants",
+      description: `Maya merchants were adventurers and diplomats. They facilitated trade across Mesoamerica, exchanging goods like cacao, obsidian, salt, and exotic feathers. Some merchants formed guilds and accumulated wealth and prestige. They also transmitted ideas and art styles, shaping cultural connections beyond city borders.`,
+      model: "https://file.garden/aCVKLOhiUQoQJpEw/Create_a_3D_model_of__0520024659_texture.glb"
+    },
+    {
+      title: "Farmers",
+      description: `The backbone of Maya civilization, farmers cultivated maize, beans, and squash through labor-intensive techniques like terrace farming and slash-and-burn. Their work fed cities, supported religious festivals, and allowed urban life to thrive. Though often overlooked, their contribution was essential to the survival of the empire.`,
+      model: "https://file.garden/aCVKLOhiUQoQJpEw/Design_a_humble_3D_mo_0520025020_texture.glb"
+    },
+    {
+      title: "Slaves",
+      description: `Slaves in Maya society were typically war captives, criminals, or debtors. They served in homes, fields, and temples, and were sometimes used in blood sacrifices. Despite their low status, they were integral to the economic and ritual systems of Maya life. Some could eventually earn freedom or status through loyalty or service.`,
+      model: "https://file.garden/aCVKLOhiUQoQJpEw/Create_a_3D_model_of__0520025433_texture.glb"
+    }
+  ];
+
+  let currentSlide = 0;
+  const title = document.getElementById("title");
+  const description = document.getElementById("description");
+  const model = document.getElementById("model");
+
+  function updateSlide() {
+    const s = slides[currentSlide];
+    title.textContent = s.title;
+    description.textContent = s.description;
+    model.setAttribute("src", s.model);
+    model.setAttribute("alt", s.title);
+  }
+
+  document.getElementById("prev").addEventListener("click", () => {
+    currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+    updateSlide();
+  });
+
+  document.getElementById("next").addEventListener("click", () => {
+    currentSlide = (currentSlide + 1) % slides.length;
+    updateSlide();
+  });
+</script>
+
+
+
+<section id="economy" style="display: flex; height: 100vh; background: #000000; color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; padding: 40px;">
+  <!-- Текстова частина -->
+  <div style="flex: 1; padding-right: 40px; max-width: 50%; display: flex; flex-direction: column; justify-content: center; ">
+    <h2 style="color: #d4af37; font-size: 3rem; margin-bottom: 30px; font-family: 'Georgia', serif;">Economy of the Maya Civilization</h2>
+    <p data-aos="fade-left" data-aos-delay="200" style="font-size: 1.4rem; line-height: 1.8; margin-bottom: 20px; font-family: 'Georgia', serif;">
+      The Maya economy was a complex system primarily based on agriculture, trade, and resource extraction. Their fertile lands allowed them to cultivate staple crops such as maize, beans, and cacao, which not only sustained the population but also played a central role in their cultural and economic activities. Alongside farming, the Maya developed sophisticated techniques for managing water and soil, ensuring long-term productivity.
+    </p>
+    <p data-aos="fade-left" data-aos-delay="200" style="font-size: 1.4rem; line-height: 1.8; margin-bottom: 20px; font-family: 'Georgia', serif;">
+      Trade was fundamental to the prosperity of Maya cities. Rather than using coined money, the Maya exchanged goods like cacao beans, textiles, obsidian tools, seashells, and maize as currency. These items had intrinsic value and facilitated commerce between distant regions, helping to build a vast network of economic relationships.
+    </p>
+  </div>
+
+  <!-- 3D модель -->
+  <div style="flex: 1; max-width: 50%; display: flex; justify-content: center; align-items: center;">
+    <model-viewer src="https://file.garden/aCVKLOhiUQoQJpEw/_Create_a_highly_deta_0519214712_texture.glb" 
+                  alt="Maya Cacao Bean Sack" 
+                  camera-controls 
+                  auto-rotate 
+                  style="width: 80%; height: 80%;">
+    </model-viewer>
+  </div>
+</section>
+
+<section id="taxes-labor" style="display: flex; height: 100vh; background: #000000; color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; padding: 40px;">
+  <!-- 3D модель -->
+  <div style="flex: 1; max-width: 50%; display: flex; justify-content: center; align-items: center;">
+    <!-- Тут вставиш свою модель робітника чи сцени будівництва -->
+    <model-viewer src="https://file.garden/aCVKLOhiUQoQJpEw/Create_a_highly_detai_0519220103_texture.glb" 
+                  alt="Maya Worker Scene" 
+                  camera-controls 
+                  auto-rotate 
+                  style="width: 80%; height: 80%;">
+    </model-viewer>
+  </div>
+
+  <!-- Текстова частина -->
+  <div style="flex: 1; padding-left: 40px; max-width: 50%; display: flex; flex-direction: column; justify-content: center;">
+    <h2 data-aos="fade-right" data-aos-delay="200" style="color: #d4af37; font-size: 3rem; margin-bottom: 30px; font-family: 'Georgia', serif;">Taxes and Labor in Maya Society</h2>
+    <p data-aos="fade-right" data-aos-delay="200" style="font-size: 1.3rem; line-height: 1.8; margin-bottom: 20px; font-family: 'Georgia', serif;">
+      Maya peasants were required to pay taxes not in money but in the form of food, textiles, or labor. This system ensured that resources were pooled to support the elite class and the functioning of the city-states. Taxation was a fundamental part of Maya governance, connecting the everyday lives of commoners with the broader state apparatus.
+    </p>
+    <p data-aos="fade-right" data-aos-delay="200" style="font-size: 1.3rem; line-height: 1.8; margin-bottom: 20px; font-family: 'Georgia', serif;">
+      The labor provided by the people was often directed towards large public projects, such as the construction of temples, roads, and other infrastructure. These monumental projects served religious, political, and economic purposes, showcasing the power and organization of Maya rulers.
+    </p>
+    <p data-aos="fade-right" data-aos-delay="200" style="font-size: 1.3rem; line-height: 1.8; font-family: 'Georgia', serif;">
+      Although slavery existed within Maya society, it was generally the consequence of warfare or debt rather than a permanent social class. Slaves could sometimes earn freedom, distinguishing Maya slavery from many other ancient systems.
+    </p>
+  </div>
+</section>
+
+<footer style="background-color: #0e0e0e; color: #fff; text-align: center; padding: 40px 20px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+  <p style="font-size: 1rem; margin-bottom: 10px;">© 2025 <strong>Empires of the Past</strong>. Created by Sofiia (Sonik)</p>
+  <p style="font-size: 1.1rem; margin-bottom: 10px;">Thanks for exploring the ancient world with us!</p>
+  <p style="font-size: 1rem;">Contact: <a href="mailto:explore.past.with.us@gmail.com" style="color: #d4af37; text-decoration: none;">explore.past.with.us@gmail.com</a></p>
+</footer>
+
+
+<script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer/dist/model-viewer.min.js"></script>
+
+<!-- Підключення model-viewer -->
+<script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer/dist/model-viewer.min.js"></script>
+
+
+<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+
+
+
+<script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer/dist/model-viewer.min.js"></script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script>
+  AOS.init();
+</script> 
+
+
+</body>
+</html>
